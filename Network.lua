@@ -81,7 +81,7 @@ function Network:Invoke(name: string, ...): any
 end
 
 --Handles remote wrappers (events and invokes)
-function Network:Wrap(name: string, funct: RBXScriptConnection): RBXScriptConnection
+function Network:Wrap(name: string, funct: RBXScriptConnection): any
     local event = Events:WaitForChild(name, 5)
     if event then
         if event:IsA("BindableEvent") then
