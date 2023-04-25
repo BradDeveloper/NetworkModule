@@ -15,7 +15,7 @@ local Network = {}
 
 --Handles network creation
 function Network:Create(name: string, typ: string): (RemoteEvent | RemoteFunction | BindableEvent | BindableFunction)
-    assert(type(name) == "string" and typ and type(typ) == "string" and table.find(types, typ), "net:Create failed")
+    assert(type(name) == "string" and table.find(types, typ), "net:Create failed")
     local event = Instance.new(typ)
     event.Name = name
     event.Parent = Events
