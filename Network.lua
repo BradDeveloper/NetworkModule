@@ -14,12 +14,14 @@ Events.Parent = ReplicatedStorage
 local Network = {}
 
 --Handles network creation
-function Network:Create(name: string, typ: string): (RemoteEvent | RemoteFunction | BindableEvent | BindableFunction)
+function Network:Create(name: string, typ: string, wrap: (...any) -> ...any): RemoteEvent | RemoteFunction | BindableEvent | BindableFunction
     assert(type(name) == "string" and table.find(types, typ), "net:Create failed")
     local event = Instance.new(typ)
     event.Name = name
     event.Parent = Events
-    return event
+    if wrap then
+        Network:Wrap(name, wrap)
+    end
 end
 
 --Handles general remote firing
